@@ -44,11 +44,12 @@ public class ReadFile {
             }
         }
 
-        for (int j = 0; j < counts.length; j++) {
-            if (counts[j]!=0) {
-                System.out.println(counts[j] + " " + words[j]); // прибавляем 1 так как первое вхождение не учитывалось
-            }
-        }        
+        // for (int j = 0; j < counts.length; j++) {
+        //     if (counts[j]!=0) {
+        //         System.out.println(counts[j] + " " + words[j]); // прибавляем 1 так как первое вхождение не учитывалось
+        //     }
+        // }        
+        
         System.out.println("\nКоличество символов в файле: " + symbols);
         System.out.println("Максимальная длина строки в файле: " + maxLength);
         System.out.println("Количество слов в файле: " + wordCount);
