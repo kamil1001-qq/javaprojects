@@ -10,7 +10,7 @@ public class Ship {
 
  	private byte[] statePart; // 0 - целый, 1 - ранен, 2-подбит
 
- 	public Ship(byte size, byte xStart, byte yStart, byte xEnd, byte yEnd, byte[] statePart) {
+ 	public Ship(byte size, byte xStart, byte yStart, byte xEnd, byte yEnd) {
  		this.size = size;
  		this.xStart = xStart;
  		this.yStart = yStart;

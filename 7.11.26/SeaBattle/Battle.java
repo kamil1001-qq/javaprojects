@@ -21,5 +21,7 @@ public class Battle {
 			byte y = sc.nextByte();
 			seaBattleField.shoot((byte)x, (byte)y);
 		}
+		seaBattleField.showField();
+		System.out.println("Вы победили!");
 	}
 }

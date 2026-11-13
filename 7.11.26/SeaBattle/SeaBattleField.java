@@ -30,13 +30,13 @@ public class SeaBattleField {
 					byte[] emptyStatePart = new byte[i];
 					if (checkField(i, xt, yt, orient)) {
 						if (orient == 0) {
-							ships[countShips++] = new Ship(i, xt, yt, xt, (byte)(yt+i-1), emptyStatePart);
+							ships[countShips++] = new Ship(i, xt, yt, xt, (byte)(yt+i-1));
 							for (byte k = 0; k < i; k++){
 								battleField[yt+k][xt] = 3;
 							}
 						}
 						else {
-							ships[countShips++] = new Ship(i, xt, yt, (byte)(xt+i-1), yt, emptyStatePart);
+							ships[countShips++] = new Ship(i, xt, yt, (byte)(xt+i-1), yt);
 							for (byte k = 0; k < i; k++){
 								battleField[yt][xt+k] = 3;
 							}
@@ -81,9 +81,8 @@ public class SeaBattleField {
 	public void shoot(byte x, byte y) { // отметки после выстрела на игровом пол
 		// проверка валидности координат
 		if (x >= 10 || x <= -1 || y >= 10 || y <= -1) return;
-
-		Ship ship = findShip(x, y);
 		if (battleField[y][x] == 3) {
+			Ship ship = findShip(x, y);
 			battleField[y][x] = 1;
 			System.out.println("Попадание.");
 			ship.setStateInjured(x, y); // отмечаем что клетка в корабле ранена
