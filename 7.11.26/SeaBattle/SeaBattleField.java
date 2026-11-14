@@ -62,6 +62,36 @@ public class SeaBattleField {
 				if (battleField[y][x+i] == 3) return false;
 			}
 		}
+
+		// проверка, свободны ли соседние клетки
+		if (x == 0) {
+			if (y == 0) {
+
+			} else if (y == 9) {
+
+			} else {
+
+			}
+		} else if (x == 9) {
+			if (y == 0) {
+
+			} else if (y == 9) {
+
+			} else {
+
+			}
+		} else {
+			if (y == 0) {
+
+			} else if (y == 9) {
+
+			} else {
+
+			}
+		}
+
+
+
 		return true;
 	}
 
@@ -81,6 +111,7 @@ public class SeaBattleField {
 	public void shoot(byte x, byte y) { // отметки после выстрела на игровом пол
 		// проверка валидности координат
 		if (x >= 10 || x <= -1 || y >= 10 || y <= -1) return;
+
 		if (battleField[y][x] == 3) {
 			Ship ship = findShip(x, y);
 			battleField[y][x] = 1;
@@ -91,6 +122,11 @@ public class SeaBattleField {
 			if (isDestroyed(x, y)) {
 				System.out.println("Корабль подбит.");
 				ship.setState((byte)2);
+				for (byte j = (byte)ship.getyStart(); j <= ship.getyEnd(); j++) {
+					 for (byte i = (byte)ship.getxStart(); i <= ship.getxEnd(); i++) {
+						battleField[j][i] = 2;
+					 }
+				}
 			}
 		} else if (battleField[y][x] == 0) {
 			battleField[y][x] = 4;
@@ -113,18 +149,17 @@ public class SeaBattleField {
 
 	public Ship findShip(byte x, byte y) { // находим, в каком корабле находится клетка
 		for (Ship ship : ships) {
-			// if (ship == null) continue;
 			byte xStart = ship.getxStart();
 			byte yStart = ship.getyStart();
 			byte xEnd = ship.getxEnd();
 			byte yEnd = ship.getyEnd();
-			if (xStart == xEnd && xStart == x) {
+			if (xStart == xEnd && xStart == x) { // вертикальный
 				for (byte i = yStart; i <= yEnd; i++) {
 					if (y == i) {
 						return ship;
 					}
 				}
-			} else if (yStart == yEnd && yStart == y) {
+			} else if (yStart == yEnd && yStart == y) { // горизонтальный
 				for (byte i = xStart; i <= xEnd; i++) {
 					if (x == i) {
 						return ship;
